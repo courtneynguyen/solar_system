@@ -6,9 +6,9 @@ var canvasCenterY = canvasHeight/2;
 var context = canvas.getContext('2d');
 
 var scene = {
-  children: []
+  children: [],
   update: function(){
-    children.forEach(function(child){
+    this.children.forEach(function(child){
       child.update();
     });
   },
@@ -16,8 +16,8 @@ var scene = {
     context.clearRect(0, 0, canvasHeight, canvasWidth);
     context.save();
     context.translate(canvasCenterX, canvasCenterY);
-    children.forEach(function(child){
-      child.render();
+    this.children.forEach(function(child){
+      child.render(context);
     });
     context.restore();
   },
@@ -29,7 +29,7 @@ var scene = {
     this.update();
     this.evaluateGravitationForces();
     this.render();
-    this.timeoutId = setTimeOut(function(){
+    this.timeoutId = setTimeout(function(){
       _this.tick();
     }, 1000/60);
   }
