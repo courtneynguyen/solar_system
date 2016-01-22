@@ -20,5 +20,5 @@ Planet.prototype.getRadius = function(){
 }
 
 Planet.prototype.update = function(){
-
+  this.position.addVec(this.velocity);
 }
